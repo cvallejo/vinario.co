@@ -81,7 +81,7 @@
 
                 <script>
                     jQuery(document).ready( function($){
-                        var newDate = new Date(2016, 8, 29);
+                        var newDate = new Date(2016, 4, 25);
                         $('#countdown-ex1').countdown({until: newDate});
                     });
                     $("#widget-subscribe-form").validate({
