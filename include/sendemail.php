@@ -18,8 +18,8 @@ if( isset( $_POST['template-contactform-submit'] ) AND $_POST['template-contactf
 
         $botcheck = $_POST['template-contactform-botcheck'];
 
-        $toemail = 'info@cafetum.com'; // Your Email Address
-        $toname = 'Cafetum.com'; // Your Name
+        $toemail = 'postmaster@vinario.co' // Your Email Address
+        $toname = 'vinario.co'; // Your Name
 
         if( $botcheck == '' ) {
 
