@@ -72,7 +72,7 @@
 
                 <div class="heading-block title-center nobottomborder">
                     <h1>Nuestro sitio está en Producción</h1>
-                    <span>Pronto conocerá el nuevo sistema de gestión vitivinícola - Vitispro!</span>
+                    <span>Pronto conocerá el nuevo sistema de gestión vitivinícola - Vinario.co!</span>
                 </div>
 
                 <div id="countdown-ex1" class="countdown countdown-large coming-soon divcenter bottommargin" style="max-width:700px;"></div>
