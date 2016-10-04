@@ -1,12 +1,11 @@
 <?php
 
-require_once('phpmailer/class.phpmailer.php');
+require_once 'phpmailer/class.phpmailer.php';
 
 $mail = new PHPMailer();
 
-if( isset( $_POST['wedding-rsvp-submit'] ) AND $_POST['wedding-rsvp-submit'] == 'submit' ) {
-    if( $_POST['wedding-rsvp-name'] != '' AND $_POST['wedding-rsvp-email'] != '' ) {
-
+if (isset($_POST['wedding-rsvp-submit']) and $_POST['wedding-rsvp-submit'] == 'submit') {
+    if ($_POST['wedding-rsvp-name'] != '' and $_POST['wedding-rsvp-email'] != '') {
         $name = $_POST['wedding-rsvp-name'];
         $email = $_POST['wedding-rsvp-email'];
         $guests = $_POST['wedding-rsvp-guests'];
@@ -19,11 +18,10 @@ if( isset( $_POST['wedding-rsvp-submit'] ) AND $_POST['wedding-rsvp-submit'] == 
         $toemail = 'username@email.com'; // Your Email Address
         $toname = 'Your Name'; // Your Name
 
-        if( $botcheck == '' ) {
-
-            $mail->SetFrom( $email , $name );
-            $mail->AddReplyTo( $email , $name );
-            $mail->AddAddress( $toemail , $toname );
+        if ($botcheck == '') {
+            $mail->SetFrom($email, $name);
+            $mail->AddReplyTo($email, $name);
+            $mail->AddAddress($toemail, $toname);
             $mail->Subject = $subject;
 
             $name = isset($name) ? "Name: $name<br><br>" : '';
@@ -31,17 +29,16 @@ if( isset( $_POST['wedding-rsvp-submit'] ) AND $_POST['wedding-rsvp-submit'] == 
             $guests = isset($guests) ? "Guests: $guests<br><br>" : '';
             $events = isset($events) ? "Event: $events<br><br>" : '';
 
-            $referrer = $_SERVER['HTTP_REFERER'] ? '<br><br><br>This Form was submitted from: ' . $_SERVER['HTTP_REFERER'] : '';
+            $referrer = $_SERVER['HTTP_REFERER'] ? '<br><br><br>This Form was submitted from: '.$_SERVER['HTTP_REFERER'] : '';
 
             $body = "$name $email $guests $events $referrer";
 
-            $mail->MsgHTML( $body );
+            $mail->MsgHTML($body);
             $sendEmail = $mail->Send();
 
-            if( $sendEmail == true ):
-                echo 'Thank you for Confirming your RSVP.';
-            else:
-                echo 'Sorry couldn\'t confirm your RSVP. Please Try Again later.<br /><br /><strong>Reason:</strong><br />' . $mail->ErrorInfo . '';
+            if ($sendEmail == true):
+                echo 'Thank you for Confirming your RSVP.'; else:
+                echo 'Sorry couldn\'t confirm your RSVP. Please Try Again later.<br /><br /><strong>Reason:</strong><br />'.$mail->ErrorInfo.'';
             endif;
         } else {
             echo 'Bot <strong>Detected</strong>.! Clean yourself Botster.!';
@@ -52,5 +49,3 @@ if( isset( $_POST['wedding-rsvp-submit'] ) AND $_POST['wedding-rsvp-submit'] == 
 } else {
     echo 'An <strong>unexpected error</strong> occured. Please Try Again later.';
 }
-
-?>

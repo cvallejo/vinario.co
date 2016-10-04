@@ -1,12 +1,11 @@
 <?php
 
-require_once('phpmailer/class.phpmailer.php');
+require_once 'phpmailer/class.phpmailer.php';
 
 $mail = new PHPMailer();
 
-if( isset( $_POST['template-contactform-submit'] ) AND $_POST['template-contactform-submit'] == 'submit' ) {
-    if( $_POST['template-contactform-name'] != '' AND $_POST['template-contactform-email'] != '' AND $_POST['template-contactform-message'] != '' ) {
-
+if (isset($_POST['template-contactform-submit']) and $_POST['template-contactform-submit'] == 'submit') {
+    if ($_POST['template-contactform-name'] != '' and $_POST['template-contactform-email'] != '' and $_POST['template-contactform-message'] != '') {
         $name = $_POST['template-contactform-name'];
         $email = $_POST['template-contactform-email'];
         $phone = $_POST['template-contactform-phone'];
@@ -21,11 +20,10 @@ if( isset( $_POST['template-contactform-submit'] ) AND $_POST['template-contactf
         $toemail = 'postmaster@vinario.co'; // Your Email Address
         $toname = 'vinario.co'; // Your Name
 
-        if( $botcheck == '' ) {
-
-            $mail->SetFrom( $email , $name );
-            $mail->AddReplyTo( $email , $name );
-            $mail->AddAddress( $toemail , $toname );
+        if ($botcheck == '') {
+            $mail->SetFrom($email, $name);
+            $mail->AddReplyTo($email, $name);
+            $mail->AddAddress($toemail, $toname);
             $mail->Subject = $subject;
 
             $name = isset($name) ? "Nombre: $name<br><br>" : '';
@@ -34,17 +32,16 @@ if( isset( $_POST['template-contactform-submit'] ) AND $_POST['template-contactf
             $service = isset($service) ? "Motivo: $service<br><br>" : '';
             $message = isset($message) ? "Mensaje: $message<br><br>" : '';
 
-            $referrer = $_SERVER['HTTP_REFERER'] ? '<br><br><br>This Form was submitted from: ' . $_SERVER['HTTP_REFERER'] : '';
+            $referrer = $_SERVER['HTTP_REFERER'] ? '<br><br><br>This Form was submitted from: '.$_SERVER['HTTP_REFERER'] : '';
 
             $body = "$name $email $phone $service $message $referrer";
 
-            $mail->MsgHTML( $body );
+            $mail->MsgHTML($body);
             $sendEmail = $mail->Send();
 
-            if( $sendEmail == true ):
-                echo 'We have <strong>successfully</strong> received your Message and will get Back to you as soon as possible.';
-            else:
-                echo 'Email <strong>could not</strong> be sent due to some Unexpected Error. Please Try Again later.<br /><br /><strong>Reason:</strong><br />' . $mail->ErrorInfo . '';
+            if ($sendEmail == true):
+                echo 'We have <strong>successfully</strong> received your Message and will get Back to you as soon as possible.'; else:
+                echo 'Email <strong>could not</strong> be sent due to some Unexpected Error. Please Try Again later.<br /><br /><strong>Reason:</strong><br />'.$mail->ErrorInfo.'';
             endif;
         } else {
             echo 'Bot <strong>Detected</strong>.! Clean yourself Botster.!';
@@ -55,5 +52,3 @@ if( isset( $_POST['template-contactform-submit'] ) AND $_POST['template-contactf
 } else {
     echo 'An <strong>unexpected error</strong> occured. Please Try Again later.';
 }
-
-?>
