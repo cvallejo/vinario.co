@@ -321,9 +321,9 @@ class OAuthRequest
   {
       @$parameters or $parameters = [];
       $defaults = ['oauth_version'           => self::$version,
-                      'oauth_nonce'        => self::generate_nonce(),
-                      'oauth_timestamp'    => self::generate_timestamp(),
-                      'oauth_consumer_key' => $consumer->key, ];
+                      'oauth_nonce'          => self::generate_nonce(),
+                      'oauth_timestamp'      => self::generate_timestamp(),
+                      'oauth_consumer_key'   => $consumer->key, ];
       if ($token) {
           $defaults['oauth_token'] = $token->key;
       }

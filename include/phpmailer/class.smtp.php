@@ -199,8 +199,8 @@ class SMTP
     // Verify we connected properly
     if (empty($this->smtp_conn)) {
         $this->error = ['error'       => 'Failed to connect to server',
-                           'errno'  => $errno,
-                           'errstr' => $errstr, ];
+                           'errno'    => $errno,
+                           'errstr'   => $errstr, ];
         if ($this->do_debug >= 1) {
             $this->edebug('SMTP -> ERROR: '.$this->error['error'].": $errstr ($errno)");
         }
